@@ -156,7 +156,7 @@ function displayOrders() {
                             <span class="badge bg-${statusClass}">${order.status.toUpperCase()}</span>
                         </div>
                         <div class="col-md-4 text-md-end">
-                            <h5 class="text-primary">$${order.total.toFixed(2)}</h5>
+                            <h5 class="text-primary">₦${order.total.toFixed(2)}</h5>
                             <small class="text-muted">${order.items.length} item(s)</small>
                         </div>
                     </div>
