@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Azbuk Stationery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book"></i> Azbuk Stationery
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="info.html">Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="account.html">
+                            <i class="fas fa-user"></i> Account
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Access Denied Section -->
+    <section class="py-5" id="accessDenied">
+        <div class="container text-center">
+            <i class="fas fa-lock fa-5x text-danger mb-4"></i>
+            <h2>Access Denied</h2>
+            <p class="lead">You need to be logged in as a seller to access this page.</p>
+            <a href="account.html" class="btn btn-primary">Go to Account</a>
+        </div>
+    </section>
+
+    <!-- Seller Dashboard -->
+    <section class="py-5" id="sellerDashboard" style="display: none;">
+        <div class="container">
+            <h1 class="mb-4"><i class="fas fa-store"></i> Seller Dashboard</h1>
+            
+            <!-- Stats Cards -->
+            <div class="row g-4 mb-4">
+                <div class="col-md-3">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Products</h5>
+                            <h2 id="totalProducts">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">In Stock</h5>
+                            <h2 id="inStock">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-title">Low Stock</h5>
+                            <h2 id="lowStock">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger">
+                        <div class="card-body">
+                            <h5 class="card-title">Out of Stock</h5>
+                            <h2 id="outOfStock">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs mb-4" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="inventory-tab" data-bs-toggle="tab" data-bs-target="#inventory" type="button">
+                        <i class="fas fa-boxes"></i> Inventory
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="add-product-tab" data-bs-toggle="tab" data-bs-target="#add-product" type="button">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="dashboardTabContent">
+                <!-- Inventory Tab -->
+                <div class="tab-pane fade show active" id="inventory">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Inventory Management</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Product</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventoryTable">
+                                        <!-- Inventory items will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Product Tab -->
+                <div class="tab-pane fade" id="add-product">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Add New Product</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="addProductForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productName" class="form-label">Product Name *</label>
+                                        <input type="text" class="form-control" id="productName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productType" class="form-label">Product Type *</label>
+                                        <select class="form-select" id="productType" required onchange="updateCategoryOptions()">
+                                            <option value="">Select Type</option>
+                                            <option value="book">Book</option>
+                                            <option value="stationery">Stationery</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productCategory" class="form-label">Category *</label>
+                                        <select class="form-select" id="productCategory" required>
+                                            <option value="">Select Category</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productPrice" class="form-label">Price ($) *</label>
+                                        <input type="number" class="form-control" id="productPrice" step="0.01" min="0" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productStock" class="form-label">Stock Quantity *</label>
+                                        <input type="number" class="form-control" id="productStock" min="0" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="productRating" class="form-label">Rating (0-5)</label>
+                                        <input type="number" class="form-control" id="productRating" step="0.1" min="0" max="5" value="0">
+                                    </div>
+                                </div>
+
+                                <!-- Book-specific fields -->
+                                <div id="bookFields" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="productAuthor" class="form-label">Author</label>
+                                            <input type="text" class="form-control" id="productAuthor">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="productISBN" class="form-label">ISBN</label>
+                                            <input type="text" class="form-control" id="productISBN">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Description *</label>
+                                    <textarea class="form-control" id="productDescription" rows="3" required></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="productImage" class="form-label">Image URL</label>
+                                    <input type="text" class="form-control" id="productImage" placeholder="https://example.com/image.jpg">
+                                    <small class="text-muted">Enter a URL for the product image</small>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-plus"></i> Add Product
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <input type="hidden" id="editProductId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editProductName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="editProductName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editProductPrice" class="form-label">Price ($)</label>
+                                <input type="number" class="form-control" id="editProductPrice" step="0.01" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editProductStock" class="form-label">Stock Quantity</label>
+                                <input type="number" class="form-control" id="editProductStock" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editProductRating" class="form-label">Rating</label>
+                                <input type="number" class="form-control" id="editProductRating" step="0.1" min="0" max="5">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="editProductDescription" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-book"></i> Azbuk Stationery</h5>
+                    <p>Your trusted source for quality books and stationery supplies.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="products.html" class="text-white-50">Products</a></li>
+                        <li><a href="info.html" class="text-white-50">Info</a></li>
+                        <li><a href="account.html" class="text-white-50">Account</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact Us</h5>
+                    <p class="text-white-50">
+                        <i class="fas fa-envelope"></i> info@azbukstationery.com<br>
+                        <i class="fas fa-phone"></i> +123-456-7890
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Azbuk Stationery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/seller-dashboard.js"></script>
+</body>
+</html>
