@@ -103,7 +103,7 @@ function displayInventory(products) {
                     </div>
                 </td>
                 <td>${product.category}</td>
-                <td>$${product.price.toFixed(2)}</td>
+                <td>₦${product.price.toFixed(2)}</td>
                 <td>${product.stock}</td>
                 <td><span class="badge ${statusClass}">${stockStatus}</span></td>
                 <td>

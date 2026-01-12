@@ -156,7 +156,7 @@ function displayOrders() {
                             <span class="badge bg-${statusClass}">${order.status.toUpperCase()}</span>
                         </div>
                         <div class="col-md-4 text-md-end">
-                            <h5 class="text-primary">$${order.total.toFixed(2)}</h5>
+                            <h5 class="text-primary">₦${order.total.toFixed(2)}</h5>
                             <small class="text-muted">${order.items.length} item(s)</small>
                         </div>
                     </div>
@@ -184,7 +184,7 @@ function displayWishlist() {
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     ${product.author ? `<p class="product-author">by ${product.author}</p>` : ''}
-                    <p class="product-price">$${product.price.toFixed(2)}</p>
+                    <p class="product-price">₦${product.price.toFixed(2)}</p>
                     <div class="btn-group w-100" role="group">
                         <button class="btn btn-primary" onclick="showProductDetails(${product.id})">
                             <i class="fas fa-eye"></i> View

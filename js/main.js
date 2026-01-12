@@ -68,7 +68,7 @@ function createProductCard(product) {
                         ${generateStars(product.rating)}
                         <span class="text-muted">(${product.rating})</span>
                     </div>
-                    <p class="product-price">$${product.price.toFixed(2)}</p>
+                    <p class="product-price">₦${product.price.toFixed(2)}</p>
                     <div class="btn-group w-100" role="group">
                         <button class="btn btn-primary" onclick="showProductDetails(${product.id})">
                             <i class="fas fa-eye"></i> View
@@ -113,7 +113,7 @@ function showProductDetails(productId) {
     document.getElementById('modalTitle').textContent = product.name;
     document.getElementById('modalImage').src = product.image;
     document.getElementById('modalImage').alt = product.name;
-    document.getElementById('modalPrice').textContent = `$${product.price.toFixed(2)}`;
+    document.getElementById('modalPrice').textContent = `₦${product.price.toFixed(2)}`;
     document.getElementById('modalDescription').textContent = product.description;
     document.getElementById('modalRating').innerHTML = generateStars(product.rating) + ` <span class="text-muted">(${product.rating})</span>`;
     
