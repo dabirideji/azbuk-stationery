@@ -25,6 +25,25 @@ main {
     display: flex;
     align-items: center;
     padding: 60px 0;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-slide .container {
+    position: relative;
+    z-index: 2;
 }
 
 .min-vh-50 {
@@ -32,15 +51,18 @@ main {
 }
 
 .bg-gradient-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), 
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600') center/cover;
 }
 
 .bg-gradient-success {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.9) 0%, rgba(56, 239, 125, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1600') center/cover;
 }
 
 .bg-gradient-info {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.9) 0%, rgba(0, 242, 254, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=1600') center/cover;
 }
 
 /* Category Cards */
@@ -80,6 +102,74 @@ main {
 .category-item i {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+}
+
+/* Book Category Colors */
+.category-item.educational {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.category-item.educational:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.category-item.novels {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.category-item.novels:hover {
+    background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+}
+
+.category-item.religious {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.category-item.religious:hover {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+}
+
+/* Subject Cards */
+.subject-card {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-10px);
+}
+
+.subject-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.physics-icon {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+}
+
+.math-icon {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.chemistry-icon {
+    background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+    color: white;
+}
+
+.subject-card:hover .subject-icon {
+    transform: rotateY(360deg);
 }
 
 /* Product Cards */
