@@ -202,7 +202,7 @@
                             </div>
                             <div class="mb-4">
                                 <h6><i class="fas fa-phone text-primary"></i> Phone</h6>
-                                <p class="ms-4">+123-456-7890<br>Mon-Fri: 9 AM - 6 PM</p>
+                                <p class="ms-4">WISDOM AJUMOBI<br>+234 905 621 9201<br>Mon-Fri: 9 AM - 6 PM</p>
                             </div>
                             <div class="mb-4">
                                 <h6><i class="fas fa-envelope text-primary"></i> Email</h6>
@@ -301,8 +301,9 @@
                 <div class="col-md-4 mb-4">
                     <h5>Contact Us</h5>
                     <p class="text-white-50">
+                        <i class="fas fa-user"></i> WISDOM AJUMOBI<br>
                         <i class="fas fa-envelope"></i> info@azbukstationery.com<br>
-                        <i class="fas fa-phone"></i> +123-456-7890
+                        <i class="fas fa-phone"></i> +234 905 621 9201
                     </p>
                 </div>
             </div>
@@ -318,7 +319,7 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
+            showNotification('Thank you for your message! We will get back to you soon.', 'success');
             this.reset();
         });
 
