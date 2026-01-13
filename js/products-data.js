@@ -240,7 +240,7 @@ const productsData = [
         category: "art",
         price: 19.99,
         description: "Three premium sketch pads with different paper textures.",
-        image: 'https://images.unsplash.com/photo-1611532736573-418d3b494ab8?w=400&h=600&fit=crop',
+        image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400&h=600&fit=crop',
         rating: 4.6,
         stock: 70
     },
